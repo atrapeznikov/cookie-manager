@@ -1,7 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     width: 270px;
-    padding: 10px;
     background: #f8f9fa;
 }
 
@@ -45,6 +48,7 @@ li {
     border-radius: 3px;
     display: flex;
     justify-content: space-between;
+    overflow-wrap: anywhere;
 }
 
 li button {
@@ -54,4 +58,8 @@ li button {
     padding: 4px 6px;
     border-radius: 3px;
     cursor: pointer;
+}
+
+.wrapper {
+    padding: 10px;
 }

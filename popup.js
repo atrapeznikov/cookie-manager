@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("viewCookies").addEventListener("click", () => {
-    debugger
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         let url = tabs[0].url;
         chrome.cookies.getAll({ url }, (cookies) => {
@@ -38,7 +37,7 @@ document.getElementById("blockDomain").addEventListener("click", () => {
             blockedDomains.add(domain);
             chrome.storage.sync.set({ blockedDomains: Array.from(blockedDomains) }, () => {
                 loadBlockedDomains();
-                alert(`Blocked ${domain}`);
+                alert(`Заблокирован ${domain}`);
             });
         });
     }
@@ -52,7 +51,7 @@ function loadBlockedDomains() {
             let li = document.createElement("li");
             li.textContent = domain;
             let removeBtn = document.createElement("button");
-            removeBtn.textContent = "Unblock";
+            removeBtn.textContent = "Разблокировать";
             removeBtn.onclick = () => unblockDomain(domain);
             li.appendChild(removeBtn);
             blockList.appendChild(li);
@@ -65,7 +64,7 @@ function unblockDomain(domain) {
         let blockedDomains = data.blockedDomains.filter(d => d !== domain);
         chrome.storage.sync.set({ blockedDomains }, () => {
             loadBlockedDomains();
-            alert(`Unblocked ${domain}`);
+            alert(`Разблокирован ${domain}`);
         });
     });
 }
